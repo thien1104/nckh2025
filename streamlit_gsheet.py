@@ -7,10 +7,8 @@ from streamlit_gsheets import GSheetsConnection
 st.set_page_config(page_title="Dự đoán lưu lượng", layout="wide")
 
 # Lấy URL từ Secrets
-sheet_url = st.secrets["GOOGLE_SHEET_URL"]
-
-# Tạo kết nối đến Google Sheets
-conn = st.connection("gsheets", type=GSheetsConnection, url=sheet_url)
+sheet_id = st.secrets["GOOGLE_SHEET_ID"]
+conn = st.connection("gsheets", type=GSheetsConnection, url=f"https://docs.google.com/spreadsheets/d/{sheet_id}")
 
 # Đọc dữ liệu từ Google Sheets
 df = conn.read()
