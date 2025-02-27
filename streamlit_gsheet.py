@@ -8,10 +8,12 @@ st.set_page_config(page_title="Dự đoán lưu lượng", layout="wide")
 
 # Lấy URL từ Secrets
 sheet_id = st.secrets["GOOGLE_SHEET_ID"]
-conn = st.connection("gsheets", type=GSheetsConnection, url=f"https://docs.google.com/spreadsheets/d/{sheet_id}")
+
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Đọc dữ liệu từ Google Sheets
-df = conn.read()
+df = conn.read(worksheet="LuongMua")  # Thay "Sheet1" bằng tên trang tính của bạn
+
 
 # Kiểm tra nếu dữ liệu có tồn tại
 if df is not None and not df.empty:
