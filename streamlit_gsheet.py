@@ -10,7 +10,7 @@ st.set_page_config(page_title="Dự đoán lưu lượng", layout="wide")
 sheet_url = st.secrets["GOOGLE_SHEET_URL"]
 
 # Tạo kết nối đến Google Sheets
-conn = st.connection("gsheets", type=GSheetsConnection)
+conn = st.connection("gsheets", type=GSheetsConnection, url=sheet_url)
 
 # Đọc dữ liệu từ Google Sheets
 df = conn.read()
