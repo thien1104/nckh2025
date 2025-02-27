@@ -6,14 +6,14 @@ from streamlit_gsheets import GSheetsConnection
 # Cấu hình giao diện Streamlit
 st.set_page_config(page_title="Dự đoán lưu lượng", layout="wide")
 
-# Lấy URL từ Secrets
+# Lấy Google Sheet ID từ Secrets
 sheet_id = st.secrets["GOOGLE_SHEET_ID"]
 
-conn = st.connection("gsheets", type=GSheetsConnection)
+# Kết nối với Google Sheets
+conn = st.connection("gsheets", type=GSheetsConnection, spreadsheet=sheet_id)
 
-# Đọc dữ liệu từ Google Sheets
-df = conn.read(worksheet="LuongMua")  # Thay "Sheet1" bằng tên trang tính của bạn
-
+# Đọc dữ liệu từ trang tính
+df = conn.read(worksheet="LuongMua")
 
 # Kiểm tra nếu dữ liệu có tồn tại
 if df is not None and not df.empty:
